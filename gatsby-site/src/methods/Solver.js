@@ -1,43 +1,66 @@
 import fixImage from "../methods/fixImage";
 import readMaze from "../methods/readMaze";
 import makeArray from "../methods/makeArray";
-import computeDirectionPriority from "../methods/DirectionPriority.js";
 import ValidMove from "../methods/ValidMove";
 import changeStart from "../methods/ModStartObj";
 import AddPath from "../methods/AddPath.js";
-import Addvisited from "../methods/AddVisited.js"
-import PathInsert from "../methods/PathInsert.js";
-
+import SlideLocation from "../methods/SlideLocation.js"
 
 var Jimp = require('jimp');
+var SimpleHashTable = require('simple-hashtable');
 
-/* SOLVE THE MAZE */
-function SolveRec(path, visited, PixelArray, Start, End){
-  ////console.log("VISITED HEIGHT WIDTH", visited);
-  console.log("START END RECURSIVE", Start.X, Start.Y, End.X, End.Y);
-  ////console.log("path start", path);
-  visited[Start.X][Start.Y] = 1;
-  var Direction = [false, path];
-  if(Start.X == End.X && Start.Y == End.Y){
-    //console.log("FOUND PATH");
-    return [true, path];
-  }else{
-    var Moves = computeDirectionPriority(Start, End);
-    for(var move of Moves){
-      //console.log("MOVING", Start.X, Start.Y, move);
-      if(ValidMove(move, Start, PixelArray, visited)){
-        Direction = SolveRec(PathInsert(path, Start), visited, PixelArray, changeStart(Start, move), End);
-        if (Direction[0] == true){
-          return Direction;
-        }else{
-          //console.log("DIRECTION", move, "DOESNT WORK from", Start.X, Start.Y, "continue");
+function reportPath(curr, Table, Start){
+  var path = new Array();
+  console.log("curr1", curr, Table.get(curr), Table.get(Table.get(curr)));
+  while (curr != -1){
+    if((curr.X == Start.X) && (curr.Y == Start.Y)){
+      return path;
+    }
+    path.push(curr);
+    curr = Table.get(curr);
+  }
+  return [];
+}
+
+function BFSolve(visited, PixelArray, Start, End){
+  var Q = new Array();
+  Q.unshift(Start);
+
+  var Curr;
+  var Table = new SimpleHashTable()
+  var Moves = ["U", "D", "L", "R"];
+  var iterations = 0;
+  while (Q.length != 0){
+    iterations += 1;
+    Curr = Q.pop();
+    if (Curr.X == End.X && Curr.Y == End.Y){
+      console.log("FINISHED");
+      return reportPath(Curr, Table, Start);
+    }
+    if (iterations > 300000){
+      console.log("too many iterations");
+      return [];
+    }
+      for (var move of Moves){
+        if(ValidMove(move, Curr, PixelArray, visited)){
+          if(iterations%500 == 0){
+            console.log("PUSH ONTO Q", changeStart(Curr, move));
+          }
+
+          var NewSpot = changeStart(Curr, move);
+          Q.unshift(NewSpot);
+          visited[NewSpot.X][NewSpot.Y] = 1;
+          Table.put(NewSpot, Curr);
         }
       }
     }
-    //console.log("NOT FOUND");
-    return [false, visited];
+    console.log("QUE EMPTY")
+    return [];
   }
-}
+
+
+
+
 
 function SolveMaze(image, PixelArray, Start, End){
   var visited = makeArray(image.bitmap.height, image.bitmap.width)
@@ -46,48 +69,33 @@ function SolveMaze(image, PixelArray, Start, End){
       visited[i][j] = 0;
     }
   }
-  var path = new Array();
-  return SolveRec(path, visited, PixelArray, Start, End);
+  return BFSolve(visited, PixelArray, Start, End);
 }
 
 /*
   READ IMAGE
 */
+
 async function mainSolver(filename, Start, End, crop, solve){
-  ////console.log("START SOLVE")
-  ////console.log("START SOLVE")
-  ////console.log("START SOLVE")
-  ////console.log("START SOLVE")
-  ////console.log("START SOLVE")
-  ////console.log("START SOLVE")
-  ////console.log("START SOLVE"
-  //////console.log("START", Start);
-  //////console.log("END", End);
+
+  console.log("FILENAME", filename);
   var image = await Jimp.read(filename);
-  //image.resize(400, Jimp.AUTO);
-  image.quality(1);
-  //////console.log("FIX", image);
+  image = image.scaleToFit(350, 350);
   image = fixImage(image, Start, End, crop);
-  //////console.log("FIX END");
   var PixelArray = readMaze(image);
   var imageResult;
-
   if (solve == true){
-    ////console.log("SOLVE MAZE");
     var path = SolveMaze(image, PixelArray, Start, End);
-    //console.log("DONE SOLVING", path);
-    if(path[0] == true){
-      console.log("ADD PATH")
-      image = await AddPath(path[1], image);
+    if (path == []){
     }else{
-      console.log("ADD VISITED");
-      //console.log("PRINT VISITED", path[1]);
-      image = await Addvisited(path[1], image);
+      image = await AddPath(path, image);
     }
   }
 
-  imageResult = await image.getBase64Async(image.getMIME());
-  return imageResult;
+  var ModImage = await image.clone()
+  var NewImage = SlideLocation(ModImage, Start, End)
+  imageResult = await NewImage.getBase64Async(NewImage.getMIME());
+  return [imageResult, image];
 }
 
 export default mainSolver;

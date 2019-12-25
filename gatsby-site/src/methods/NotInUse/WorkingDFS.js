@@ -1,7 +1,6 @@
 import fixImage from "../methods/fixImage";
 import readMaze from "../methods/readMaze";
 import makeArray from "../methods/makeArray";
-import computeDirectionPriority from "../methods/DirectionPriority.js";
 import ValidMove from "../methods/ValidMove";
 import changeStart from "../methods/ModStartObj";
 import AddPath from "../methods/AddPath.js";
