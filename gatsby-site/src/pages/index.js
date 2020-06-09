@@ -40,8 +40,8 @@ class IndexPage extends React.Component{
     Solve : false,
     crop : {X: 0, Y: 0},
     Mazenum : 1,
-    fileName : '../../static/maze4.jpg',
-    fileName : '/MazeSolverGame/gh-pages/static/maze4.jpg',
+    //fileName : '../../static/maze4.jpg',
+    fileName : 'https://previews.123rf.com/images/in8finity/in8finity1404/in8finity140400171/27719793-maze-black-wall-on-white-background-.jpg',
     Height: 0,
     Width: 0,
     Start : {X: 0, Y: 0},
@@ -112,7 +112,7 @@ class IndexPage extends React.Component{
     var Solve = this.state.solve
 
     //const filename = '../../static/maze' + Mazenum + '.jpg';
-    const filename = 'MazeSolverGame/blob/gh-pages/static/maze4.jpg';
+    const filename = 'https://previews.123rf.com/images/in8finity/in8finity1404/in8finity140400171/27719793-maze-black-wall-on-white-background-.jpg';
     const Dimens = await GetDimens(filename);
 
     this.setState(() => {
