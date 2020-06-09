@@ -41,7 +41,7 @@ class IndexPage extends React.Component{
     crop : {X: 0, Y: 0},
     Mazenum : 1,
     //fileName : '../../static/maze4.jpg',
-    fileName : 'https://previews.123rf.com/images/in8finity/in8finity1404/in8finity140400171/27719793-maze-black-wall-on-white-background-.jpg',
+    fileName : 'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX17614063.jpg',
     Height: 0,
     Width: 0,
     Start : {X: 0, Y: 0},
@@ -112,7 +112,7 @@ class IndexPage extends React.Component{
     var Solve = this.state.solve
 
     //const filename = '../../static/maze' + Mazenum + '.jpg';
-    const filename = 'https://previews.123rf.com/images/in8finity/in8finity1404/in8finity140400171/27719793-maze-black-wall-on-white-background-.jpg';
+    const filename = 'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX17614063.jpg';
     const Dimens = await GetDimens(filename);
 
     this.setState(() => {
