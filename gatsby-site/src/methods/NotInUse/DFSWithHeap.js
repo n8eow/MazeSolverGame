@@ -126,10 +126,8 @@ async function mainSolver(filename, Start, End, crop, solve){
   var imageResult;
 
   if (solve == true){
-    ////console.log("SOLVE MAZE");
     var path = SolveMaze(image, PixelArray, Start, End);
-    //console.log("DONE SOLVING", path);
-    console.log("ADD PATH")
+    console.log("ADD PATH");
     image = await AddPath(path, image);
   }
 

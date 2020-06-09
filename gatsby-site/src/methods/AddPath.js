@@ -2,7 +2,6 @@ import inbounds from "../methods/inbounds";
 
 
 async function AddPath(path, image){
-  console.log("PATH", path);
   for(var Position of path){
     image.setPixelColor(0xff0000ff, Position.X, Position.Y);
 

@@ -104,7 +104,7 @@ class IndexPage extends React.Component{
     });
   }
   async componentDidMount(){
-    const Mazenum = 11;
+    const Mazenum = 2;
     var Start = this.state.Start;
     var End = this.state.End;
     var crop = this.state.crop;

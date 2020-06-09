@@ -86,7 +86,7 @@ async function mainSolver(filename, Start, End, crop, solve){
   var imageResult;
   if (solve == true){
     var path = SolveMaze(image, PixelArray, Start, End);
-    if (path == []){
+    if (path.length == 0){
     }else{
       image = await AddPath(path, image);
     }
