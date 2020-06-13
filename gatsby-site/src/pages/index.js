@@ -138,7 +138,7 @@ class IndexPage extends React.Component{
      <h1>Nate's Maze Solver</h1>
 
       <Wrapper>
-        <Slider HandleSlide = {this.HandleSlide} max = {this.state.Height} id = "H1" type = "Start(red) Up/Down" />
+        <Slider HandleSlide = {this.HandleSlide} max = {this.state.Height} id = "H1" type = "Staddrt(red) Up/Down" />
         <Slider HandleSlide = {this.HandleSlide} max = {this.state.Height} id = "H2" type = "End(green) Up/Down"/>
         <div></div>
 
@@ -147,8 +147,8 @@ class IndexPage extends React.Component{
         <Button onClick = {this.Crop}><b>Crop Maze</b></Button>
 
 
-        <Slider HandleSlide = {this.HandleSlide} max = {this.state.Width} id = "CW" type = "Crop Width (px)"/>
-        <Slider HandleSlide = {this.HandleSlide} max = {this.state.Height} id = "CH" type = "Crop Height (px)"/>
+        <Slider HandleSlide = {this.HandleSlide} max = {this.state.Width} id = "CW" type = "Croo0000a;sldkfja;ldfkj0oop Width (px)"/>
+        <Slider HandleSlide = {this.HandleSlide} max = {this.state.Height} id = "CH" type = "Crop Heasdf ight (px)"/>
         <Button onClick = {this.Solver}><b>Solve Maze</b></Button>
 
       </Wrapper>
