@@ -142,13 +142,13 @@ class IndexPage extends React.Component{
         <Slider HandleSlide = {this.HandleSlide} max = {this.state.Height} id = "H2" type = "End(green) Up/Down"/>
         <div></div>
 
-        <Slider HandleSlide = {this.HandleSlide} max = {this.state.Width} id = "W3" type = "Staaaaaart(red) Left/Right"/>
-        <Slider HandleSlide = {this.HandleSlide} max = {this.state.Width} id = "W4" type = "End(greeeen) Left/Right"/>
+        <Slider HandleSlide = {this.HandleSlide} max = {this.state.Width} id = "W3" type = "Start(red) Left/Right"/>
+        <Slider HandleSlide = {this.HandleSlide} max = {this.state.Width} id = "W4" type = "End(green) Left/Right"/>
         <Button onClick = {this.Crop}><b>Crop Maze</b></Button>
 
 
         <Slider HandleSlide = {this.HandleSlide} max = {this.state.Width} id = "CW" type = "Crop Width (px)"/>
-        <Slider HandleSlide = {this.HandleSlide} max = {this.state.Height} id = "CH" type = "Crop Height (px)"/>
+        <Slider HandleSlide = {this.HandleSlide} max = {this.state.Height} id = "CH" type = "Crop Heasdf ight (px)"/>
         <Button onClick = {this.Solver}><b>Solve Maze</b></Button>
 
       </Wrapper>
