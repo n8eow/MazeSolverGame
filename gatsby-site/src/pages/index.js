@@ -147,7 +147,7 @@ class IndexPage extends React.Component{
         <Button onClick = {this.Crop}><b>Crop Maze</b></Button>
 
 
-        <Slider HandleSlide = {this.HandleSlide} max = {this.state.Width} id = "CW" type = "Croo00000oop Width (px)"/>
+        <Slider HandleSlide = {this.HandleSlide} max = {this.state.Width} id = "CW" type = "Croo0000a;sldkfja;ldfkj0oop Width (px)"/>
         <Slider HandleSlide = {this.HandleSlide} max = {this.state.Height} id = "CH" type = "Crop Height (px)"/>
         <Button onClick = {this.Solver}><b>Solve Maze</b></Button>
 
