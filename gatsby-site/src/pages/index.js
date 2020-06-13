@@ -138,7 +138,7 @@ class IndexPage extends React.Component{
      <h1>Nate's Maze Solver</h1>
 
       <Wrapper>
-        <Slider HandleSlide = {this.HandleSlide} max = {this.state.Height} id = "H1" type = "Start(red) Up/Down" />
+        <Slider HandleSlide = {this.HandleSlide} max = {this.state.Height} id = "H1" type = "Staddrt(red) Up/Down" />
         <Slider HandleSlide = {this.HandleSlide} max = {this.state.Height} id = "H2" type = "End(green) Up/Down"/>
         <div></div>
 
